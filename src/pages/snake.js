@@ -5,17 +5,19 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+const SnakePage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Snake" />
     <h1>Hi people</h1>
-    <p>Welcome to the Gatsby site of Glenn Raskovich!</p>
-    <p>Time to build something great.</p>
+    <p>Welcome to the game Snake, written by Glenn Raskovich!</p>
+    <p>WIP, come back for a simple but fun game!</p>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
-    <Link to="/games/">Go to my games!</Link>
+    <Link to="/">Return home</Link>
+    <br/>
+    <Link to="/games">Go to my games!</Link>
   </Layout>
 )
 
-export default IndexPage
+export default SnakePage
