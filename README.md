@@ -40,6 +40,10 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
     Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
+1.  **Deploy directly to GitHub pages**
+    
+    Run `npm run deploy` to have Gatsby build the static site and push to the master branch.
+
 ## 🧐 What's inside?
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
