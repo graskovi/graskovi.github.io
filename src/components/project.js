@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 import { Card, CardActionArea, CardActions, CardContent, CardHeader,
          CardMedia, Collapse, IconButton, Typography, makeStyles } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -14,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Project = ({name, description, img, linkUrl}) => {
+const Project = ({name, position, description, img, linkUrl}) => {
   //const styles = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   function handleExpandClick() {
@@ -22,35 +21,45 @@ const Project = ({name, description, img, linkUrl}) => {
   }
 
   return (
-    <Card>
-      <CardActionArea>
-        {
-          linkUrl ?
-          <a href={linkUrl} target="_blank">
-          <CardHeader title={name} />
-          </a>
-          :
-          <CardHeader title={name} />
-        }
-        {
-          img &&
-          <CardMedia
-            style={{height: 100}}
-            image={img}
-          />
-        }
-        {
-          description &&
-          <div>
-            <CardActions disableSpacing>
-              <IconButton
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="Show description"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
+    <div>
+      <Card>
+        <CardActionArea>
+          <table style={{width: "100%", margin: "1em"}}>
+            <tr>
+              <td>
+              {
+                linkUrl ?
+                <a href={linkUrl} target="_blank">
+                <CardHeader title={name} />
+                </a>
+                :
+                <CardHeader title={name} />
+              }
+              </td>
+              {
+                description &&
+                <td>
+                <CardActions disableSpacing>
+                  <IconButton
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="Show description"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                </td>
+              }
+            </tr>
+          </table>
+          {
+            position &&
+            <Typography paragraph style={{marginLeft: "1em"}}>
+              {position}
+            </Typography>
+          }
+          {
+            description &&
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography paragraph>
@@ -58,10 +67,11 @@ const Project = ({name, description, img, linkUrl}) => {
                 </Typography>
               </CardContent>
             </Collapse>
-          </div>
-        }
-      </CardActionArea>
-    </Card>
+          }
+        </CardActionArea>
+      </Card>
+      <br />
+    </div>
   );
 }
 
