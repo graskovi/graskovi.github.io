@@ -5,6 +5,7 @@ import React from "react"
 import GlennImage from '../images/Glenn/Glenn_AtLNH.jpg'
 
 const ContactUrl = "https://www.linkedin.com/in/glenn-raskovich"
+const GitHubUrl = "https://www.github.com/graskovi"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -34,6 +35,13 @@ const Header = ({ siteTitle }) => (
             <Link to="/games/" style={{color: `white`, textDecoration: `none`}}>
               Games
             </Link>
+          </td>
+          <td>
+            <a href={GitHubUrl} target="_blank" rel="noopener noreferrer">
+            <div style={{color: `white`, textDecoration: `none`}}>
+              GitHub
+            </div>
+            </a>
           </td>
           <td>
             <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
