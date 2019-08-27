@@ -1,9 +1,10 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import { Avatar } from '@material-ui/core'
 
 import GlennImage from '../images/Glenn/Glenn_AtLNH.jpg'
+
+const ContactUrl = "https://www.linkedin.com/in/glenn-raskovich"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -35,11 +36,15 @@ const Header = ({ siteTitle }) => (
             </Link>
           </td>
           <td>
-            <Link to="/contact/" style={{color: `white`, textDecoration: `none`}}>
+            <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
+            <div style={{color: `white`, textDecoration: `none`}}>
               Contact
-            </Link>
+            </div>
+            </a>
           </td>
+          <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
           <td><img src={GlennImage} style={{width: 100, height: 100, borderRadius: 100}}/></td>
+          </a>
         </tr>
       </table>
     </div>

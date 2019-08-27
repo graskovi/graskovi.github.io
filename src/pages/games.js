@@ -3,15 +3,17 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Project from "../components/project"
 
 const GamesPage = () => (
   <Layout>
     <SEO title="Games" />
-    <h1>Games by Glenn</h1>
-    <p>WIP page, come back for links to games I develop!</p>
+    <h1>Games</h1>
+    <Project name="Snake (WIP)" linkUrl="/snake" />
+    <Project name="Tetris (WIP)" linkUrl="/tetris" />
+    <Project name="Scratch games" linkUrl="https://scratch.mit.edu/users/graskovich"/>
     <Link to="/">Go back to the homepage</Link>
     <br/>
-    <Link to="/snake">Play the game Snake</Link>
   </Layout>
 )
 
