@@ -4,6 +4,13 @@ import { Card, CardActionArea, CardActions, CardContent, CardHeader,
          Collapse, IconButton, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+const styles = {
+  link: {
+    color: "black",
+    textDecoration: "none",
+  }
+}
+
 const Project = ({name, position, description, img, linkUrl}) => {
   const [expanded, setExpanded] = React.useState(false);
   function handleExpandClick() {
@@ -20,8 +27,8 @@ const Project = ({name, position, description, img, linkUrl}) => {
               {
                 linkUrl ? (
                 linkUrl.startsWith("http")
-                ? <a href={linkUrl} target="_blank" rel="noopener noreferrer"><CardHeader title={name} /></a>
-                : <a href={linkUrl}><CardHeader title={name} /></a>
+                ? <a href={linkUrl} style={styles.link} target="_blank" rel="noopener noreferrer"><CardHeader title={name} /></a>
+                : <a href={linkUrl} style={styles.link}><CardHeader title={name} /></a>
                 )
                 : <CardHeader title={name} />
               }

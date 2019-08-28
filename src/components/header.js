@@ -7,6 +7,13 @@ import GlennImage from '../images/Glenn/Glenn_AtLNH.jpg'
 const ContactUrl = "https://www.linkedin.com/in/glenn-raskovich"
 const GitHubUrl = "https://www.github.com/graskovi"
 
+const styles = {
+  tab: {
+    color: "white",
+    textDecoration: "none"
+  }
+}
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -32,20 +39,20 @@ const Header = ({ siteTitle }) => (
             </h1>
           </td>
           <td>
-            <Link to="/games/" style={{color: `white`, textDecoration: `none`}}>
+            <Link to="/games/" style={styles.tab}>
               Games
             </Link>
           </td>
           <td>
             <a href={GitHubUrl} target="_blank" rel="noopener noreferrer">
-            <div style={{color: `white`, textDecoration: `none`}}>
+            <div style={styles.tab}>
               GitHub
             </div>
             </a>
           </td>
           <td>
             <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-            <div style={{color: `white`, textDecoration: `none`}}>
+            <div style={styles.tab}>
               Contact
             </div>
             </a>
