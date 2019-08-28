@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { Card, CardActionArea, CardActions, CardContent, CardHeader,
          Collapse, IconButton, Typography } from '@material-ui/core';
@@ -8,10 +8,14 @@ const styles = {
   link: {
     color: "black",
     textDecoration: "none",
+  },
+  table: {
+    width: "100%",
+    margin: "1em"
   }
 }
 
-const Project = ({name, position, description, img, linkUrl}) => {
+const Project = ({name, dates, position, description, linkUrl}) => {
   const [expanded, setExpanded] = React.useState(false);
   function handleExpandClick() {
     setExpanded(!expanded);
@@ -21,30 +25,36 @@ const Project = ({name, position, description, img, linkUrl}) => {
     <div>
       <Card>
         <CardActionArea>
-          <table style={{width: "100%", margin: "1em"}}>
+          <table style={styles.table}>
             <tr>
               <td>
               {
-                linkUrl ? (
-                linkUrl.startsWith("http")
-                ? <a href={linkUrl} style={styles.link} target="_blank" rel="noopener noreferrer"><CardHeader title={name} /></a>
-                : <a href={linkUrl} style={styles.link}><CardHeader title={name} /></a>
+                linkUrl ?
+                (linkUrl.startsWith("http")
+                ?
+                <a href={linkUrl} style={styles.link} target="_blank" rel="noopener noreferrer">
+                  <CardHeader title={name} subheader={dates} />
+                </a>
+                :
+                <a href={linkUrl} style={styles.link}>
+                  <CardHeader title={name} subheader={dates} />
+                </a>
                 )
-                : <CardHeader title={name} />
+                : <CardHeader title={name} subheader={dates} />
               }
               </td>
               {
                 description &&
                 <td>
-                <CardActions disableSpacing>
-                  <IconButton
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="Show description"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
-                </CardActions>
+                  <CardActions disableSpacing>
+                    <IconButton
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="Show description"
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </CardActions>
                 </td>
               }
             </tr>
@@ -75,7 +85,6 @@ const Project = ({name, position, description, img, linkUrl}) => {
 Project.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
-  img: PropTypes.object,
   linkUrl: PropTypes.string,
 }
 

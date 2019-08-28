@@ -15,6 +15,7 @@ const GamesPage = () => (
       Media Lab. Its intuitive interface helped me get into programming in Middle
       school, and it has held a special place in my heart ever since."
     />
+    <Project name="Feed the Cat! (WIP)" linkUrl="/feed-the-cat" />
     <Project name="Snake (WIP)" linkUrl="/snake" />
     <Project name="Tetris (WIP)" linkUrl="/tetris" />
     <Link to="/">Go back to the homepage</Link>

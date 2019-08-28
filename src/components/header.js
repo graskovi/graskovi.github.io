@@ -8,32 +8,43 @@ const ContactUrl = "https://www.linkedin.com/in/glenn-raskovich"
 const GitHubUrl = "https://www.github.com/graskovi"
 
 const styles = {
+  header: {
+    background: `rebeccapurple`,
+    marginBottom: `1.45rem`,
+  },
   tab: {
     color: "white",
     textDecoration: "none"
+  },
+  row: {
+    margin: `0 auto`,
+    maxWidth: 960,
+    //padding: `1.45rem 1.0875rem`,
+    alignContent: 'center',
+  },
+  text: {
+    color: `white`,
+    textDecoration: `none`,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
   }
 }
 
 const Header = ({ siteTitle }) => (
   <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
+    style={styles.header}
   >
     <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        //padding: `1.45rem 1.0875rem`,
-        alignContent: 'center',
-      }}
+      style={styles.row}
     >
       <table cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td>
             <h1 style={{ margin: 0 }}>
-              <Link to="/" style={{ color: `white`, textDecoration: `none`}}>
+              <Link to="/" style={styles.text}>
                 {siteTitle}
               </Link>
             </h1>
@@ -58,7 +69,7 @@ const Header = ({ siteTitle }) => (
             </a>
           </td>
           <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-          <td><img src={GlennImage} style={{width: 100, height: 100, borderRadius: 100}}/></td>
+          <td><img src={GlennImage} style={styles.avatar}/></td>
           </a>
         </tr>
       </table>
