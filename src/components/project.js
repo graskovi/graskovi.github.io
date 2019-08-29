@@ -84,6 +84,8 @@ const Project = ({name, dates, position, description, linkUrl}) => {
 
 Project.propTypes = {
   name: PropTypes.string.isRequired,
+  dates: PropTypes.string,
+  position: PropTypes.string,
   description: PropTypes.string,
   linkUrl: PropTypes.string,
 }

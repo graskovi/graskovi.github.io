@@ -30,8 +30,8 @@ const IndexPage = () => (
       position="DevOps Software Development Intern"
       linkUrl="https://www.mitchell.com"
       description="I wrote a C# .NET project to automate a PSI build process:
-      the logic interfaces a Microsoft TFS repository with the local file system,
-      builds a dependency graph of internal packages, and updates the files in
+      the logic interfaces a Team Foundation Server repository with the local file
+      system, builds a dependency graph of internal packages, and updates the files in
       topological order. Then, I configured a Docker image and hosted it on AWS ECS.
       This utility helped reduce build time from ~3 days to ~3 hours."
     />
