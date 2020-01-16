@@ -12,6 +12,13 @@ const styles = {
   table: {
     width: "100%",
     margin: "1em"
+  },
+  name: {
+    textAlign: "left"
+  },
+  rowEnd: {
+    align: "right",
+    textAlign: "right"
   }
 }
 
@@ -45,7 +52,7 @@ const Project = ({name, dates, position, description, linkUrl}) => {
               </td>
               {
                 description &&
-                <td>
+                <td style={styles.rowEnd}>
                   <CardActions disableSpacing>
                     <IconButton
                       onClick={handleExpandClick}

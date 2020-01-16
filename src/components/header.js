@@ -9,7 +9,8 @@ const GitHubUrl = "https://www.github.com/graskovi"
 
 const styles = {
   header: {
-    background: `rebeccapurple`,
+    // 3700B3
+    background: `#551A8B`,
     marginBottom: `1.45rem`,
   },
   tab: {
