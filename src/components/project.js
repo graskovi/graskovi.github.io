@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Card, CardActionArea, CardActions, CardContent, CardHeader,
          Collapse, IconButton, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const styles = {
   link: {

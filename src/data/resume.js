@@ -1,4 +1,4 @@
-export const ResumeData = [
+export default const ResumeData = [
   {
     "title": "Work Experience",
     "content": [

@@ -1,11 +1,11 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { Link } from 'gatsby';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import Image from '../components/image';
+import SEO from '../components/seo';
 
-import Tetris from "../components/Tetris/Tetris";
+import Tetris from '../components/Tetris/Tetris';
 
 const TetrisPage = () => (
   <Layout>
@@ -13,13 +13,13 @@ const TetrisPage = () => (
     <h1>Hi people</h1>
     <p>Welcome to the game Tetris, written by Glenn Raskovich!</p>
     <Tetris />
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
       <Image />
     </div>
     <Link to="/">Return home</Link>
-    <br/>
+    <br />
     <Link to="/games">Go to my games!</Link>
   </Layout>
-)
+);
 
-export default TetrisPage
+export default TetrisPage;
