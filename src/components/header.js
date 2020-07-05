@@ -1,38 +1,38 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import GlennImage from '../images/Glenn/Glenn_AtLNH.jpg'
+import GlennImage from '../images/Glenn/Glenn_AtLNH.jpg';
 
-const ContactUrl = "https://www.linkedin.com/in/glenn-raskovich"
-const GitHubUrl = "https://www.github.com/graskovi"
+const ContactUrl = 'https://www.linkedin.com/in/glenn-raskovich';
+const GitHubUrl = 'https://www.github.com/graskovi';
 
 const styles = {
   header: {
     // 3700B3
-    background: `#551A8B`,
-    marginBottom: `1.45rem`,
+    background: '#551A8B',
+    marginBottom: '1.45rem',
   },
   tab: {
-    color: "white",
-    textDecoration: "none"
+    color: 'white',
+    textDecoration: 'none',
   },
   row: {
-    margin: `0 auto`,
+    margin: '0 auto',
     maxWidth: 960,
-    //padding: `1.45rem 1.0875rem`,
+    // padding: `1.45rem 1.0875rem`,
     alignContent: 'center',
   },
   text: {
-    color: `white`,
-    textDecoration: `none`,
+    color: 'white',
+    textDecoration: 'none',
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 100,
-  }
-}
+  },
+};
 
 const Header = ({ siteTitle }) => (
   <header
@@ -52,27 +52,27 @@ const Header = ({ siteTitle }) => (
               </h1>
             </td>
             <td>
-              <Link to="/games/" style={styles.tab}>
+              <Link to="/games" style={styles.tab}>
                 Games
               </Link>
             </td>
             <td>
               <a href={GitHubUrl} target="_blank" rel="noopener noreferrer">
-              <div style={styles.tab}>
+                <div style={styles.tab}>
                 GitHub
-              </div>
+                </div>
               </a>
             </td>
             <td>
               <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-              <div style={styles.tab}>
+                <div style={styles.tab}>
                 Contact
-              </div>
+                </div>
               </a>
             </td>
             <td>
               <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-                <img src={GlennImage} style={styles.avatar}/>
+                <img src={GlennImage} alt="Glenn" style={styles.avatar} />
               </a>
             </td>
           </tr>
@@ -80,14 +80,14 @@ const Header = ({ siteTitle }) => (
       </table>
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
-  siteTitle: ``,
-}
+  siteTitle: '',
+};
 
-export default Header
+export default Header;
