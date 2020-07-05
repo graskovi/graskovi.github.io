@@ -41,38 +41,42 @@ const Header = ({ siteTitle }) => (
     <div
       style={styles.row}
     >
-      <table cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td>
-            <h1 style={{ margin: 0 }}>
-              <Link to="/" style={styles.text}>
-                {siteTitle}
+      <table cellPadding="0" cellSpacing="0" border="0">
+        <tbody>
+          <tr>
+            <td>
+              <h1 style={{ margin: 0 }}>
+                <Link to="/" style={styles.text}>
+                  {siteTitle}
+                </Link>
+              </h1>
+            </td>
+            <td>
+              <Link to="/games/" style={styles.tab}>
+                Games
               </Link>
-            </h1>
-          </td>
-          <td>
-            <Link to="/games/" style={styles.tab}>
-              Games
-            </Link>
-          </td>
-          <td>
-            <a href={GitHubUrl} target="_blank" rel="noopener noreferrer">
-            <div style={styles.tab}>
-              GitHub
-            </div>
-            </a>
-          </td>
-          <td>
-            <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-            <div style={styles.tab}>
-              Contact
-            </div>
-            </a>
-          </td>
-          <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
-          <td><img src={GlennImage} style={styles.avatar}/></td>
-          </a>
-        </tr>
+            </td>
+            <td>
+              <a href={GitHubUrl} target="_blank" rel="noopener noreferrer">
+              <div style={styles.tab}>
+                GitHub
+              </div>
+              </a>
+            </td>
+            <td>
+              <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
+              <div style={styles.tab}>
+                Contact
+              </div>
+              </a>
+            </td>
+            <td>
+              <a href={ContactUrl} target="_blank" rel="noopener noreferrer">
+                <img src={GlennImage} style={styles.avatar}/>
+              </a>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </header>

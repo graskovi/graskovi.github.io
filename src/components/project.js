@@ -30,7 +30,7 @@ const Project = ({name, dates, position, description, linkUrl}) => {
 
   return (
     <div>
-      <Card>
+       <Card>
         <CardActionArea>
           <table style={styles.table}>
             <tr>
@@ -55,6 +55,7 @@ const Project = ({name, dates, position, description, linkUrl}) => {
                 <td style={styles.rowEnd}>
                   <CardActions disableSpacing>
                     <IconButton
+                      styles={{ rotate: '100deg' }}
                       onClick={handleExpandClick}
                       aria-expanded={expanded}
                       aria-label="Show description"
@@ -97,4 +98,4 @@ Project.propTypes = {
   linkUrl: PropTypes.string,
 }
 
-export default Project
+export default Project;

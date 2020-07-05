@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import Project from "../components/project"
 
 import GlobalStyles from "../components/globalStyles"
-import ResumeData from "../data/resume.json"
+// import ResumeData from "../data/resume"
 
 const styles = {
   astronaut: {
