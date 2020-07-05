@@ -1,7 +1,7 @@
 const GlobalStyles = {
   darkPurple: {
-    background: "#401A4C"
-  }
-}
+    background: '#401A4C',
+  },
+};
 
-export default GlobalStyles
+export default GlobalStyles;

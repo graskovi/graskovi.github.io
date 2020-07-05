@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 import Project from '../components/project';
 
 import GlobalStyles from '../components/globalStyles';
-// import ResumeData from "../data/resume"
+import ResumeData from '../data/resume.json';
 
 const styles = {
   astronaut: {
@@ -24,6 +24,22 @@ const IndexPage = () => (
   <div style={GlobalStyles.darkPurple}>
     <Layout>
       <SEO title="Glenn Raskovich" />
+      {
+        // Parse resume JSON data to fill out resume section
+        ResumeData.map((data) => (
+          'section' in data
+            ? <h1>{data.section}</h1>
+            : (
+              <Project
+                name={data.name}
+                dates={data.dates}
+                linkUrl={data.linkUrl}
+                description={data.description}
+                position={data.position}
+              />
+            )
+        ))
+      }
       <Project
         name="About me"
         position="UC San Diego Class of 2020, Revelle College, B.S. Computer Science"
