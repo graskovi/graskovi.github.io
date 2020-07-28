@@ -1,0 +1,13 @@
+/* Makes the entire page have a purple background */
+html {
+  background-color: #401a4c;
+}
+
+/* Puts main page content below the fixed header (see header.js) */
+main {
+  padding-top: 4em;
+}
+
+.contrast {
+  -webkit-text-stroke: 1px black; color: white;
+}

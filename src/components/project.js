@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import {
-  Card, CardActionArea, CardActions, CardContent, CardHeader,
-  Collapse, IconButton, Typography,
+  Card, CardActionArea, CardContent, CardHeader, Collapse, Typography,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { styled } from '@material-ui/styles';
 
 const styles = {
   link: {
@@ -24,6 +24,39 @@ const styles = {
   },
 };
 
+const StyledCardHeader = styled(CardHeader)({
+  color: 'purple',
+  borderColor: 'black',
+  borderRadius: 2,
+  textAlign: 'left',
+  textShadowColor: 'black',
+  textShadowOffset: { width: 2, height: 2 },
+  textShadowRadius: 2,
+});
+
+const isLinkExternal = (linkUrl) => linkUrl.startsWith('http');
+
+const linkFromUrl = (linkUrl, linkText) => {
+  if (isLinkExternal(linkUrl)) {
+    return <a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkText}</a>;;
+  }
+  return <Link to={linkUrl}>{linkText}</Link>;
+};
+
+const linkWrapper = (linkUrl, project) => {
+  if (isLinkExternal(linkUrl)) {
+    return <a href={linkUrl} target="_blank" rel="noopener noreferrer">{project}</a>;
+  }
+  return <Link to={linkUrl}>{project}</Link>;
+};
+
+const navWrapper = (linkUrl, description, project) => {
+  if (linkUrl && !description) {
+    return linkWrapper(linkUrl, project);
+  }
+  return project;
+};
+
 const Project = ({
   name, dates, position, description, linkUrl,
 }) => {
@@ -32,24 +65,7 @@ const Project = ({
     setExpanded(!expanded);
   }
 
-  let titleElem;
-  if (linkUrl) {
-    if (linkUrl.startsWith('http')) {
-      titleElem = (
-        <a href={linkUrl} style={styles.link} target="_blank" rel="noopener noreferrer">
-          <CardHeader title={name} subheader={dates} />
-        </a>
-      );
-    } else {
-      titleElem = (
-        <a href={linkUrl} style={styles.link}>
-          <CardHeader title={name} subheader={dates} />
-        </a>
-      );
-    }
-  } else {
-    titleElem = <CardHeader title={name} subheader={dates} />;
-  }
+  const titleElem = <StyledCardHeader title={name} subheader={dates} />;
 
   let descriptionElem = null;
   if (description) {
@@ -68,32 +84,17 @@ const Project = ({
     }
   }
 
-  return (
+  return navWrapper(linkUrl, description, (
     <div>
-      <Card>
+      <Card
+        onClick={handleExpandClick}
+      >
         <CardActionArea>
           <table style={styles.table}>
             <tr>
               <td>
                 {titleElem}
               </td>
-              {
-                description
-                && (
-                  <td style={styles.rowEnd}>
-                    <CardActions disableSpacing>
-                      <IconButton
-                        styles={{ rotate: '100deg' }}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="Show description"
-                      >
-                        <ExpandMoreIcon />
-                      </IconButton>
-                    </CardActions>
-                  </td>
-                )
-              }
             </tr>
           </table>
           {
@@ -110,11 +111,10 @@ const Project = ({
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   {descriptionElem}
-                  {/**
-                  <Typography paragraph>
-                    {description}
-                  </Typography>
-                  */}
+                  {
+                    linkUrl
+                    && (linkFromUrl(linkUrl, 'Check it out!'))
+                  }
                 </CardContent>
               </Collapse>
             )
@@ -123,7 +123,7 @@ const Project = ({
       </Card>
       <br />
     </div>
-  );
+  ));
 };
 
 Project.propTypes = {
@@ -132,6 +132,13 @@ Project.propTypes = {
   position: PropTypes.string,
   description: PropTypes.string,
   linkUrl: PropTypes.string,
+};
+
+Project.defaultProps = {
+  dates: null,
+  position: null,
+  description: null,
+  linkUrl: null,
 };
 
 export default Project;

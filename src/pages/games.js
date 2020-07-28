@@ -5,6 +5,8 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Project from '../components/project';
 
+import '../components/custom.css';
+
 const GamesPage = () => (
   <Layout>
     <SEO title="Games" />
@@ -14,14 +16,10 @@ const GamesPage = () => (
       linkUrl="https://scratch.mit.edu/users/graskovich"
       position="Where I got started with programming!"
       description="Scratch is a visual programming language developed by the MIT
-      Media Lab. Its intuitive interface helped me get into programming in Middle
-      school, and it has held a special place in my heart ever since."
+      Media Lab. Its intuitive interface helped me start programming games in Middle
+      school, and I've been programming ever since."
     />
-    <Project name="Feed the Cat! (WIP)" linkUrl="/feed-the-cat" />
-    <Project name="Snake (WIP)" linkUrl="/snake" />
-    <Project name="Tetris (WIP)" linkUrl="/tetris" />
-    <Link to="/">Go back to the homepage</Link>
-    <br />
+    <Project name="RaCatball" linkUrl="/feed-the-cat" />
   </Layout>
 );
 
