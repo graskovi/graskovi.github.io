@@ -52,8 +52,7 @@ const linkWrapper = (linkUrl, children) => {
   return <Link to={linkUrl}>{children}</Link>;
 };
 
-// TODO add anchor onClick method that returns a boolean:
-//      true for should process, false for don't
+const isTargetNav = (target) => target.tagName === 'A';
 
 const navWrapper = (linkUrl, description, project) => {
   if (linkUrl && !description) {
@@ -91,9 +90,7 @@ const Project = ({
     <div>
       <Card
         onClick={(e) => {
-          // console.log(e.target);
-          console.log(e.target.tagName);
-          handleExpandClick();
+          if (!isTargetNav(e.target)) handleExpandClick();
         }}
       >
         <CardActionArea>
