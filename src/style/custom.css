@@ -8,6 +8,10 @@ main {
   padding-top: 4em;
 }
 
+h1, h2, h3, h4, h5, h6, p, span {
+  font-family: 'Helvetica Neue' !important;
+}
+
 .contrast {
   -webkit-text-stroke: 1px black; color: white;
 }

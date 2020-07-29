@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+
 import {
   Card, CardActionArea, CardContent, CardHeader, Collapse, Typography,
 } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
+// TODO choose one for in-description link icon
+// import HttpIcon from '@material-ui/icons/Http';
+// import LinkIcon from '@material-ui/icons/Link';
 
 const styles = {
   link: {

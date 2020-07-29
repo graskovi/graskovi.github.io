@@ -5,12 +5,12 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Project from '../components/project';
 
-import '../components/custom.css';
+import '../style/custom.css';
 
 const GamesPage = () => (
   <Layout>
     <SEO title="Games" />
-    <h1>Games</h1>
+    <h1 className="contrast">Games</h1>
     <Project
       name="Scratch games"
       linkUrl="https://scratch.mit.edu/users/graskovich"

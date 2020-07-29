@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 
 import ResumeData from '../data/resume.json';
 
-import '../components/custom.css';
+import '../style/custom.css';
 
 const IndexPage = () => (
   <Layout>
