@@ -12,11 +12,18 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Glenn Raskovich" />
     {
-      // Parse resume JSON data to fill out resume section
       // TODO add 3.61 major GPA and/or 3.69 GPA
+      // Parse resume JSON data to fill out resume section
       ResumeData.map((data) => (
         'section' in data
-          ? <h1 className="contrast">{data.section}</h1>
+          ? (
+            <h1
+              className="contrast"
+              id={data.section}
+            >
+              {data.section}
+            </h1>
+          )
           : (
             <Project
               name={data.name}

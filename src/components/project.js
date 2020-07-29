@@ -6,21 +6,26 @@ import {
   Card, CardActionArea, CardContent, CardHeader, Collapse, Typography,
 } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
-// TODO choose one for in-description link icon
-// import HttpIcon from '@material-ui/icons/Http';
-// import LinkIcon from '@material-ui/icons/Link';
+
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import HttpIcon from '@material-ui/icons/Http';
+import LinkIcon from '@material-ui/icons/Link';
 
 const styles = {
+  innerContent: {
+    marginLeft: '2em',
+    marginRight: '2em',
+  },
+  // TODO all 3 below are unused: link for removing old-feel of anchors,
+  // name (or title) for styling card header
   link: {
-    color: 'black',
     textDecoration: 'none',
   },
-  table: {
-    width: '100%',
-    margin: '1em',
-  },
   name: {
-    textAlign: 'left',
+    // textAlign: 'left',
+    marginLeft: '1em',
+    marginRight: '1em',
   },
   rowEnd: {
     align: 'right',
@@ -40,19 +45,15 @@ const StyledCardHeader = styled(CardHeader)({
 
 const isLinkExternal = (linkUrl) => linkUrl.startsWith('http');
 
-const linkFromUrl = (linkUrl, linkText) => {
+const linkWrapper = (linkUrl, children) => {
   if (isLinkExternal(linkUrl)) {
-    return <a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkText}</a>;;
+    return <a href={linkUrl} target="_blank" rel="noopener noreferrer">{children}</a>;
   }
-  return <Link to={linkUrl}>{linkText}</Link>;
+  return <Link to={linkUrl}>{children}</Link>;
 };
 
-const linkWrapper = (linkUrl, project) => {
-  if (isLinkExternal(linkUrl)) {
-    return <a href={linkUrl} target="_blank" rel="noopener noreferrer">{project}</a>;
-  }
-  return <Link to={linkUrl}>{project}</Link>;
-};
+// TODO add anchor onClick method that returns a boolean:
+//      true for should process, false for don't
 
 const navWrapper = (linkUrl, description, project) => {
   if (linkUrl && !description) {
@@ -68,8 +69,6 @@ const Project = ({
   function handleExpandClick() {
     setExpanded(!expanded);
   }
-
-  const titleElem = <StyledCardHeader title={name} subheader={dates} />;
 
   let descriptionElem = null;
   if (description) {
@@ -91,33 +90,34 @@ const Project = ({
   return navWrapper(linkUrl, description, (
     <div>
       <Card
-        onClick={handleExpandClick}
+        onClick={(e) => {
+          // console.log(e.target);
+          console.log(e.target.tagName);
+          handleExpandClick();
+        }}
       >
         <CardActionArea>
-          <table style={styles.table}>
-            <tr>
-              <td>
-                {titleElem}
-              </td>
-            </tr>
-          </table>
+          <StyledCardHeader title={name} subheader={dates} />
           {
+            /* If included, use position as inner content */
             position
             && (
-              <Typography paragraph style={{ marginLeft: '2em' }}>
+              <Typography paragraph style={styles.innerContent}>
                 {position}
               </Typography>
             )
           }
           {
+            /* If there is a description, include in an expandable area */
             description
             && (
               <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
+                <CardContent style={styles.innerContent}>
                   {descriptionElem}
                   {
+                    /* If there is a link, keep within the expandable area below the text */
                     linkUrl
-                    && (linkFromUrl(linkUrl, 'Check it out!'))
+                    && (linkWrapper(linkUrl, 'Check it out!'))
                   }
                 </CardContent>
               </Collapse>
