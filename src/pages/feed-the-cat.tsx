@@ -4,6 +4,8 @@ import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
+import '../style/custom.css';
+
 const styles = {
   astronaut: {
     maxWidth: '300px',
@@ -28,7 +30,7 @@ const FeedTheCatPage = () => (
   <Layout>
     <SEO title="RaCatball" />
 
-    <h1 style={styles.titleText}>Feed the Cat!</h1>
+    <h1 className="contrast" style={styles.titleText}>Feed the Cat!</h1>
 
     <iframe
       src="https://i.simmer.io/@graskovi/~0d29f209-9251-b05c-8d55-f4360a9b1160"
