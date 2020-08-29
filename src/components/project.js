@@ -21,6 +21,9 @@ const styles = {
     marginLeft: '0.5em',
     marginRight: '0.5em',
   },
+  linkStyle: {
+    textDecoration: 'none',
+  },
   rowStyle: {
     display: 'flex',
     flexDirection: 'row',
@@ -39,22 +42,41 @@ const StyledCardHeader = styled(CardHeader)({
 
 const isLinkExternal = (linkUrl) => linkUrl.startsWith('http');
 
-const linkWrapper = (linkUrl, children = null) => {
-  const content = (children == null) ? <OpenInNewIcon /> : children;
+const linkWrapper = (linkUrl, child = null) => {
+  const content = (isLinkExternal(linkUrl))
+    ? (
+      <div style={styles.rowStyle}>
+        <div style={{ marginRight: '0.5em' }}>{child}</div>
+        <OpenInNewIcon />
+      </div>
+    )
+    : child;
   if (isLinkExternal(linkUrl)) {
     return (
-      <a href={linkUrl} target="_blank" rel="noopener noreferrer">
+      <a href={linkUrl} style={styles.linkStyle} target="_blank" rel="noopener noreferrer">
         {content}
       </a>
     );
   }
-  return <Link to={linkUrl}>{children}</Link>;
+  return <Link to={linkUrl} style={styles.linkStyle}>{content}</Link>;
 };
 
-const isTargetNav = (target) => target.tagName === 'A';
+// TODO move to utilities file, or find a pre-existing implementation
+const isTargetNav = (target) => {
+  let curr = target;
+  while (curr) {
+    if (curr.tagName === 'A') return true;
+    curr = curr.parentNode;
+  }
+  return false;
+};
 
 const navWrapper = (linkUrl, description, project) => {
-  if (linkUrl && !description) {
+  if (linkUrl) {
+    // TODO handle linking
+    if (description) {
+      return project;
+    }
     return linkWrapper(linkUrl, project);
   }
   return project;
@@ -91,7 +113,6 @@ const Project = ({
     <div>
       <Card
         onClick={(e) => {
-          console.log(e.target);
           // Only handle the click if a link is not clicked
           if (!isTargetNav(e.target)) handleExpandClick();
         }}
@@ -119,16 +140,22 @@ const Project = ({
               /* If there is a description, include in an expandable area */
               description
               && (
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    {descriptionElem}
-                    {
-                      /* If there is a link, keep within the expandable area below the text */
-                      linkUrl
-                      && (linkWrapper(linkUrl))
-                    }
-                  </CardContent>
-                </Collapse>
+                <div style={{ paddingTop: '0.5em' }}>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      {descriptionElem}
+                      {
+                        /* If there is a link, keep within the expandable area below the text */
+                        linkUrl
+                        && (
+                          <div style={{ paddingTop: '1em' }}>
+                            {linkWrapper(linkUrl, name)}
+                          </div>
+                        )
+                      }
+                    </CardContent>
+                  </Collapse>
+                </div>
               )
             }
           </div>
