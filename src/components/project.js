@@ -40,7 +40,22 @@ const StyledCardHeader = styled(CardHeader)({
   textShadowRadius: 2,
 });
 
-const isLinkExternal = (linkUrl) => linkUrl.startsWith('http');
+// TODO move some of these helper functions to utilities file
+const isLinkInternal = (linkUrl) => linkUrl.startsWith('/');
+
+const isLinkExternal = (linkUrl) => linkUrl.toLowerCase().startsWith('http');
+
+const internalLinkWrapper = (linkUrl, content) => (
+  <Link to={linkUrl} style={styles.linkStyle}>
+    {content}
+  </Link>
+);
+
+const externalLinkWrapper = (linkUrl, content) => (
+  <a href={linkUrl} style={styles.linkStyle} target="_blank" rel="noopener noreferrer">
+    {content}
+  </a>
+);
 
 const linkWrapper = (linkUrl, child = null) => {
   const content = (isLinkExternal(linkUrl))
@@ -51,17 +66,14 @@ const linkWrapper = (linkUrl, child = null) => {
       </div>
     )
     : child;
-  if (isLinkExternal(linkUrl)) {
-    return (
-      <a href={linkUrl} style={styles.linkStyle} target="_blank" rel="noopener noreferrer">
-        {content}
-      </a>
-    );
+
+  if (isLinkInternal(linkUrl)) {
+    return internalLinkWrapper(linkUrl, content);
   }
-  return <Link to={linkUrl} style={styles.linkStyle}>{content}</Link>;
+
+  return externalLinkWrapper(linkUrl, content);
 };
 
-// TODO move to utilities file, or find a pre-existing implementation
 const isTargetNav = (target) => {
   let curr = target;
   while (curr) {
@@ -71,14 +83,15 @@ const isTargetNav = (target) => {
   return false;
 };
 
-const navWrapper = (linkUrl, description, project) => {
-  if (linkUrl) {
-    // TODO handle linking
-    if (description) {
-      return project;
+// TODO edit this to not rely on linkWrapper and properly handle cases
+const projectNavWrapper = (linkUrl, description, project) => {
+  if (linkUrl && !description) {
+    if (isLinkInternal(linkUrl)) {
+      return internalLinkWrapper(linkUrl, project);
     }
-    return linkWrapper(linkUrl, project);
+    return externalLinkWrapper(linkUrl, project);
   }
+
   return project;
 };
 
@@ -109,7 +122,14 @@ const Project = ({
     }
   }
 
-  return navWrapper(linkUrl, description, (
+  // Create navigation icon if entire project is clickable
+  let navIcon = null;
+  if (linkUrl && !description) {
+    if (isLinkInternal(linkUrl)) navIcon = <LinkIcon />;
+    else navIcon = <OpenInNewIcon />;
+  }
+
+  return projectNavWrapper(linkUrl, description, (
     <div>
       <Card
         onClick={(e) => {
@@ -118,13 +138,16 @@ const Project = ({
         }}
       >
         <CardActionArea>
-          <StyledCardHeader title={name} subheader={dates} style={styles.name} />
+          {/* TODO make this header a row with a link if there is no description */}
+          <div style={{ ...styles.rowStyle, alignItems: 'center' }}>
+            <StyledCardHeader title={name} subheader={dates} style={styles.name} />
+            { navIcon }
+          </div>
           <div style={styles.innerContent}>
             <div style={styles.rowStyle}>
               {
-                /* If included, use position as inner content */
-                position
-                && (
+                // If included, use position as inner content
+                position && (
                   <Typography paragraph>
                     {position}
                   </Typography>
@@ -137,15 +160,14 @@ const Project = ({
               }
             </div>
             {
-              /* If there is a description, include in an expandable area */
-              description
-              && (
+              // If there is a description, include in an expandable area
+              description && (
                 <div style={{ paddingTop: '0.5em' }}>
                   <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                       {descriptionElem}
                       {
-                        /* If there is a link, keep within the expandable area below the text */
+                        // If there is a link, keep within the expandable area below the text
                         linkUrl
                         && (
                           <div style={{ paddingTop: '1em' }}>
