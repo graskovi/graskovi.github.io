@@ -83,7 +83,6 @@ const isTargetNav = (target) => {
   return false;
 };
 
-// TODO edit this to not rely on linkWrapper and properly handle cases
 const projectNavWrapper = (linkUrl, description, project) => {
   if (linkUrl && !description) {
     if (isLinkInternal(linkUrl)) {
@@ -138,7 +137,6 @@ const Project = ({
         }}
       >
         <CardActionArea>
-          {/* TODO make this header a row with a link if there is no description */}
           <div style={{ ...styles.rowStyle, alignItems: 'center' }}>
             <StyledCardHeader title={name} subheader={dates} style={styles.name} />
             { navIcon }
@@ -183,6 +181,7 @@ const Project = ({
           </div>
         </CardActionArea>
       </Card>
+      {/* TODO this break is a hacky fix for a lack of spacing between projects, remove? */}
       <br />
     </div>
   ));
