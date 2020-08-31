@@ -123,67 +123,59 @@ const Project = ({
 
   // Create navigation icon if entire project is clickable
   let navIcon = null;
-  if (linkUrl && !description) {
+  if (description) navIcon = (expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />);
+  else if (linkUrl && !description) {
     if (isLinkInternal(linkUrl)) navIcon = <LinkIcon />;
     else navIcon = <OpenInNewIcon />;
   }
 
   return projectNavWrapper(linkUrl, description, (
-    <div>
-      <Card
-        onClick={(e) => {
-          // Only handle the click if a link is not clicked
-          if (!isTargetNav(e.target)) handleExpandClick();
-        }}
-      >
-        <CardActionArea>
-          <div style={{ ...styles.rowStyle, alignItems: 'center' }}>
-            <StyledCardHeader title={name} subheader={dates} style={styles.name} />
-            { navIcon }
-          </div>
-          <div style={styles.innerContent}>
-            <div style={styles.rowStyle}>
-              {
-                // If included, use position as inner content
-                position && (
-                  <Typography paragraph>
-                    {position}
-                  </Typography>
-                )
-              }
-              {
-                description && (
-                  expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />
-                )
-              }
-            </div>
+    <Card
+      onClick={(e) => {
+        // Only handle the click if a link is not clicked
+        if (!isTargetNav(e.target)) handleExpandClick();
+      }}
+    >
+      <CardActionArea>
+        <div style={{ ...styles.rowStyle, alignItems: 'center' }}>
+          <StyledCardHeader title={name} subheader={dates} style={styles.name} />
+          { navIcon }
+        </div>
+        <div style={styles.innerContent}>
+          <div style={styles.rowStyle}>
             {
-              // If there is a description, include in an expandable area
-              description && (
-                <div style={{ paddingTop: '0.5em' }}>
-                  <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      {descriptionElem}
-                      {
-                        // If there is a link, keep within the expandable area below the text
-                        linkUrl
-                        && (
-                          <div style={{ paddingTop: '1em' }}>
-                            {linkWrapper(linkUrl, name)}
-                          </div>
-                        )
-                      }
-                    </CardContent>
-                  </Collapse>
-                </div>
+              // If included, use position as inner content
+              position && (
+                <Typography paragraph>
+                  {position}
+                </Typography>
               )
             }
           </div>
-        </CardActionArea>
-      </Card>
-      {/* TODO this break is a hacky fix for a lack of spacing between projects, remove? */}
-      <br />
-    </div>
+          {
+            // If there is a description, include in an expandable area
+            description && (
+              <div style={{ paddingTop: '0.5em' }}>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    {descriptionElem}
+                    {
+                      // If there is a link, keep within the expandable area below the text
+                      linkUrl
+                      && (
+                        <div style={{ paddingTop: '1em' }}>
+                          {linkWrapper(linkUrl, name)}
+                        </div>
+                      )
+                    }
+                  </CardContent>
+                </Collapse>
+              </div>
+            )
+          }
+        </div>
+      </CardActionArea>
+    </Card>
   ));
 };
 

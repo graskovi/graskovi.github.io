@@ -19,7 +19,9 @@ const GamesPage = () => (
       Media Lab. Its intuitive interface helped me start programming games in Middle
       school, and I've been programming ever since."
     />
+    <br />
     <Project name="RaCatball" linkUrl="/feed-the-cat" />
+    <br />
   </Layout>
 );
 

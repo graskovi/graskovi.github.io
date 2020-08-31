@@ -25,13 +25,16 @@ const IndexPage = () => (
             </h1>
           )
           : (
-            <Project
-              name={data.name}
-              dates={data.dates}
-              linkUrl={data.linkUrl}
-              description={data.description}
-              position={data.position}
-            />
+            <div>
+              <Project
+                name={data.name}
+                dates={data.dates}
+                linkUrl={data.linkUrl}
+                description={data.description}
+                position={data.position}
+              />
+              <br />
+            </div>
           )
       ))
     }
